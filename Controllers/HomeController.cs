@@ -31,7 +31,7 @@ namespace CSharpProject.Controllers
         {
             if(HttpContext.Session.GetInt32("UserId") != null)
             {
-                return RedirectToAction("Dashboard");
+                return RedirectToAction("All", "GamePosts");
             }
 
             return View("Index");
@@ -62,7 +62,7 @@ namespace CSharpProject.Controllers
             HttpContext.Session.SetInt32("UserId", newUser.UserId);
             HttpContext.Session.SetString("Name", newUser.Name);
 
-            return RedirectToAction("Dashboard");
+            return RedirectToAction("All", "GamePosts");
         }
 
         [HttpPost("/login")]
@@ -94,7 +94,7 @@ namespace CSharpProject.Controllers
             HttpContext.Session.SetInt32("UserId", dbUser.UserId);
             HttpContext.Session.SetString("Name", dbUser.Name);
 
-            return RedirectToAction("Dashboard");
+            return RedirectToAction("All", "GamePosts");
         }
 
         [HttpPost("/logout")]
@@ -102,17 +102,6 @@ namespace CSharpProject.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index");
-        }
-
-        [HttpGet("/dashboard")]
-        public IActionResult Dashboard()
-        {
-            if(HttpContext.Session.GetInt32("UserId") == null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            return View("Dashboard");
         }
 
         public IActionResult Privacy()

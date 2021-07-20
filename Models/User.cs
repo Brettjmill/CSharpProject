@@ -32,5 +32,6 @@ namespace CSharpProject.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
+        public List<GamePost> GamePosts { get; set; }
       }
   }

@@ -1,0 +1,34 @@
+@model List<GamePost>
+
+<h2 class="text-center">All Posts</h2>
+
+@{
+  GamePost newGamePost = new GamePost();
+}
+<partial name="_createForm" model="@newGamePost"></partial>
+
+<hr>
+
+@foreach (GamePost post in Model)
+{
+  <div class="card shadow rounded mx-auto w-75 mb-3">
+    <h4 class="card-title text-center bg-dark text-light py-2 rounded-top">
+      <a asp-controller="GamePosts" asp-action="Details" asp-route-postId="@post.GamePostId">@post.Title</a>
+    </h4>
+
+    <div class="card-body">
+      <p class="card-text">
+        @post.Description
+      </p>
+      <small class="text-muted">
+        Submited by @post.Author.Name on: @post.CreatedAt
+      </small>
+    </div>
+
+    @if (post.ImgUrl != null)
+    {
+      <img src="@post.ImgUrl" alt="related to post." class="card-img-bottom">
+    }
+
+  </div>
+}

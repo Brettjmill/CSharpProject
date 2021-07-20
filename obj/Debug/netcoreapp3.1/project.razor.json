@@ -14412,6 +14412,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\GamePosts\\_createForm.cshtml",
+      "TargetPath": "Views\\GamePosts\\_createForm.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\Home\\_Login.cshtml",
       "TargetPath": "Views\\Home\\_Login.cshtml",
       "FileKind": "mvc"
@@ -14424,6 +14429,21 @@
     {
       "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\GamePosts\\New.cshtml",
+      "TargetPath": "Views\\GamePosts\\New.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\GamePosts\\Edit.cshtml",
+      "TargetPath": "Views\\GamePosts\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\GamePosts\\All.cshtml",
+      "TargetPath": "Views\\GamePosts\\All.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14449,6 +14469,11 @@
     {
       "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\GamePosts\\Details.cshtml",
+      "TargetPath": "Views\\GamePosts\\Details.cshtml",
       "FileKind": "mvc"
     }
   ],
