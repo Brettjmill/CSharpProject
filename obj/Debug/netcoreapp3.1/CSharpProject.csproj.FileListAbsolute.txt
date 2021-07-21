@@ -66,3 +66,4 @@ C:\Users\speed\Desktop\Coding_Dojo\c_stack\CSharpProject\obj\Debug\netcoreapp3.1
 C:\Users\speed\Desktop\Coding_Dojo\c_stack\CSharpProject\obj\Debug\netcoreapp3.1\Razor\Views\GamePosts\Edit.cshtml.g.cs
 C:\Users\speed\Desktop\Coding_Dojo\c_stack\CSharpProject\obj\Debug\netcoreapp3.1\Razor\Views\GamePosts\New.cshtml.g.cs
 C:\Users\speed\Desktop\Coding_Dojo\c_stack\CSharpProject\obj\Debug\netcoreapp3.1\Razor\Views\GamePosts\_createForm.cshtml.g.cs
+C:\Users\speed\Desktop\Coding_Dojo\c_stack\CSharpProject\obj\Debug\netcoreapp3.1\Razor\Views\GamePosts\_createComment.cshtml.g.cs

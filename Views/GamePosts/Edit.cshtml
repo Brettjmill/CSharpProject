@@ -1,0 +1,28 @@
+@model GamePost
+
+<div>
+  <h2 class="text-center">Edit Post</h2>
+
+  <form asp-controller="GamePosts" asp-action="Update" asp-route-id="@Model.GamePostId" class="shadow p-3 rounded"
+    method="POST">
+    <div class="form-group">
+      <label asp-for="Title"></label>
+      <span asp-validation-for="Title" class="text-danger font-weight-bold"></span>
+      <input asp-for="Title" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Description"></label>
+      <span asp-validation-for="Description" class="text-danger font-weight-bold"></span>
+      <input asp-for="Description" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label asp-for="ImgUrl"></label>
+      <span asp-validation-for="ImgUrl" class="text-danger font-weight-bold"></span>
+      <input asp-for="ImgUrl" class="form-control">
+    </div>
+
+    <button class="btn btn-outline-success">Edit</button>
+  </form>
+</div>

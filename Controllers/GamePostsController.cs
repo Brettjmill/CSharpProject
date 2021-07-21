@@ -93,10 +93,8 @@ namespace CSharpProject.Controllers
 
             GamePost post = db.GamePosts
             .Include(post => post.Author)
-            // .Include(post => post.Likes)
-            // .ThenInclude is for including something on the thing that was
-            // just previously Included (we just included Likes above).
-            // .ThenInclude(like => like.User)
+            .Include(post => post.Comments)
+            .ThenInclude(comment => comment.CommentAuthor)
             .FirstOrDefault(p => p.GamePostId == postId);
 
             if (post == null)
@@ -107,98 +105,104 @@ namespace CSharpProject.Controllers
             return View("Details", post);
         }
 
-        // [HttpPost("/posts/{postId}")]
-        // public IActionResult Delete(int postId)
-        // {
-        //     Post post = db.Posts.FirstOrDefault(p => p.PostId == postId);
+        [HttpPost("/posts/{postId}")]
+        public IActionResult Delete(int postId)
+        {
+            GamePost post = db.GamePosts.FirstOrDefault(p => p.GamePostId == postId);
 
-        //     // If post doesn't exist or not author, redirect away.
-        //     if (post == null || post.UserId != uid)
-        //     {
-        //         return RedirectToAction("All");
-        //     }
+            // If post doesn't exist or not author, redirect away.
+            if (post == null || post.UserId != uid)
+            {
+                return RedirectToAction("All");
+            }
 
-        //     db.Posts.Remove(post);
-        //     db.SaveChanges();
+            db.GamePosts.Remove(post);
+            db.SaveChanges();
 
-        //     return RedirectToAction("All");
-        // }
+            return RedirectToAction("All");
+        }
 
-        // [HttpGet("/posts/{postId}/edit")]
-        // public IActionResult Edit(int postId)
-        // {
-        //     if (!isLoggedIn)
-        //     {
-        //         return RedirectToAction("Index", "Home");
-        //     }
+        [HttpGet("/posts/{postId}/edit")]
+        public IActionResult Edit(int postId)
+        {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-        //     Post post = db.Posts.FirstOrDefault(p => p.PostId == postId);
+            GamePost post = db.GamePosts.FirstOrDefault(p => p.GamePostId == postId);
 
-        //     // If post doesn't exist or not author, redirect away.
-        //     if (post == null || post.UserId != uid)
-        //     {
-        //         return RedirectToAction("All");
-        //     }
+            // If post doesn't exist or not author, redirect away.
+            if (post == null || post.UserId != uid)
+            {
+                return RedirectToAction("All");
+            }
 
-        //     return View("Edit", post);
-        // }
+            return View("Edit", post);
+        }
 
-        // [HttpPost("/posts/{postId}/update")]
-        // public IActionResult Update(int postId, Post editedPost)
-        // {
-        //     if (ModelState.IsValid == false)
-        //     {
-        //         editedPost.PostId = postId;
-        //         return View("Edit", editedPost);
-        //     }
+        [HttpPost("/posts/{postId}/update")]
+        public IActionResult Update(int postId, GamePost editedPost)
+        {
+            if (ModelState.IsValid == false)
+            {
+                editedPost.GamePostId = postId;
+                return View("Edit", editedPost);
+            }
 
-        //     Post dbPost = db.Posts.FirstOrDefault(p => p.PostId == postId);
+            GamePost dbPost = db.GamePosts.FirstOrDefault(p => p.GamePostId == postId);
 
-        //     if (dbPost == null)
-        //     {
-        //         return RedirectToAction("All");
-        //     }
+            if (dbPost == null)
+            {
+                return RedirectToAction("All");
+            }
 
-        //     dbPost.Topic = editedPost.Topic;
-        //     dbPost.Body = editedPost.Body;
-        //     dbPost.ImgUrl = editedPost.ImgUrl;
-        //     dbPost.UpdatedAt = DateTime.Now;
+            dbPost.Title = editedPost.Title;
+            dbPost.Description = editedPost.Description;
+            dbPost.ImgUrl = editedPost.ImgUrl;
+            dbPost.UpdatedAt = DateTime.Now;
 
-        //     db.Posts.Update(dbPost);
-        //     db.SaveChanges();
+            db.GamePosts.Update(dbPost);
+            db.SaveChanges();
 
-        //     // Dict matches Details params     new { paramName = paramValue }
-        //     return RedirectToAction("Details", new { postId = dbPost.PostId });
-        // }
+            // Dict matches Details params     new { paramName = paramValue }
+            return RedirectToAction("Details", new { postId = dbPost.GamePostId });
+        }
 
-        // [HttpPost("/posts/{postId}/like")]
-        // public IActionResult Like(int postId)
-        // {
-        //     if (!isLoggedIn)
-        //     {
-        //         return RedirectToAction("Index", "Home");
-        //     }
+        [HttpPost("/{postId}/comments/create")]
+        public IActionResult CreateComment(int postId, Comment newComment)
+        {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-        //     UserPostLike existingLike = db.UserPostLikes
-        //         .FirstOrDefault(like => like.PostId == postId && (int)uid == like.UserId);
+            GamePost post = db.GamePosts.FirstOrDefault(p => p.GamePostId == postId);
 
-        //     if (existingLike == null)
-        //     {
-        //         UserPostLike like = new UserPostLike()
-        //         {
-        //             PostId = postId,
-        //             UserId = (int)uid
-        //         };
+            if (ModelState.IsValid == false)
+            {
+                // Send back to the page with the form to show errors.
+                return RedirectToAction("Details", post);
+            }
+            // ModelState IS valid...
+            newComment.UserId = (int)uid;
+            newComment.GamePostId = (int)post.GamePostId;
+            db.Comments.Add(newComment);
+            db.SaveChanges();
+            return RedirectToAction("Details", post);
+        }
 
-        //         db.UserPostLikes.Add(like);
-        //     }
-        //     else
-        //     {
-        //         db.UserPostLikes.Remove(existingLike);
-        //     }
+        [HttpPost("/{postId}/comments/delete")]
+        public IActionResult CommentDelete(int commentId)
+        {
+            Comment comment = db.Comments.FirstOrDefault(c => c.CommentId == commentId);
 
-        //     db.SaveChanges();
-        //     return RedirectToAction("All");
-        // }
+            GamePost post = db.GamePosts.FirstOrDefault(p => p.GamePostId == comment.GamePostId);
+
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+
+            return RedirectToAction("Details", post);
+        }
     }
 }

@@ -14417,6 +14417,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\GamePosts\\_createComment.cshtml",
+      "TargetPath": "Views\\GamePosts\\_createComment.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\speed\\Desktop\\Coding_Dojo\\c_stack\\CSharpProject\\Views\\Home\\_Login.cshtml",
       "TargetPath": "Views\\Home\\_Login.cshtml",
       "FileKind": "mvc"
